@@ -57,16 +57,18 @@ def entero_a_binario(numero:int)->str:
 def es_pesado(n: int) -> bool:
     binario = entero_a_binario(n)
     posicion: int = 0
-    contadorUnos: int = 0
-    contadorCeros: int = 0
+    resultado: bool
+    
     while(posicion < len(binario)):
-        if(binario[posicion] == "0"):
-            contadorCeros += 1
-        elif(binario[posicion] == "1"):
-            contadorUnos += 1
-        posicion += 1
-    return contadorUnos>contadorCeros
-
+        analizar: str = prefijo(binario, posicion)
+        if(mas_unos_que_ceros(analizar) == True):
+            resultado = True
+            posicion += 1
+        else:
+            resultado = False
+            posicion += 1
+    return resultado
+        
    
     
 def densidad(n:int, m: int) -> float:   
@@ -79,8 +81,6 @@ def densidad(n:int, m: int) -> float:
     densidad:float = cantidadDePesados / (m-n)
     return densidad
 
-
-   
 """    
 print("")
 print(cant_ceros("10010"))

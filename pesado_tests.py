@@ -35,6 +35,7 @@ class TestNumerosPesados(unittest.TestCase):
     def test_es_pesado(self):
         self.assertEqual(es_pesado(57),True)
         self.assertEqual(es_pesado(40),False)
+        self.assertEqual(es_pesado(51),False)
         self.assertEqual(es_pesado(0),False)
         
     def test_densidad(self):
