@@ -63,7 +63,7 @@ def entero_a_binario(numero:int)->str:
         resultado="0"
     while(numero > 0):
         resto:int = numero % 2
-        numero: int = numero // 2
+        numero = numero // 2
         resultado = str(resto) + resultado
     return resultado
    
@@ -96,9 +96,7 @@ def densidad(n:int, m: int) -> float:
         if(es_pesado(posicion)):
             cantidadDePesados += 1
         posicion += 1
-    densidad:float = cantidadDePesados / (m-n)
-    return densidad
+    resultado:float = cantidadDePesados / (m-n)
+    return resultado
 
 
-
-print(densidad(2,3))
