@@ -1,6 +1,6 @@
 def cant_ceros(s:str) -> int:
     """
-    Requiere: 
+    Requiere: Nada
     Devuelve: La cantidad de ceros que se encuentran en el string
     """
     posicion : int = 0
@@ -15,7 +15,6 @@ def cant_unos(s:str) -> int:
     """
     Requiere: Nada
     Devuelve: La cantidad de unos que se encuentran en el string
-    Modifica: Nada
     """
     posicion : int = 0
     cantidadUnos: int = 0
@@ -26,6 +25,10 @@ def cant_unos(s:str) -> int:
     return cantidadUnos
 
 def mas_unos_que_ceros(s:str) -> bool:
+    """
+    Requiere: Nada
+    Devuelve: True si hay mas unos que ceros. False si no hay mas unos que ceros
+    """
     posicion : int = 0
     cantidadUnos: int = 0
     cantidadCeros: int = 0
@@ -38,6 +41,10 @@ def mas_unos_que_ceros(s:str) -> bool:
     return cantidadUnos > cantidadCeros
 
 def prefijo(s:str, k:int) -> str:
+    """
+    Requiere: un string y luego un int que sea menor o igual a la longitud del string ingresado.
+    Devuelve: Contando desde la izquierda, devolvera las primeras k (el int ingresado) caracteres del string ingresado
+    """
     posicion:int = 0
     prefijo:str = ""
     while posicion < k:
@@ -47,31 +54,43 @@ def prefijo(s:str, k:int) -> str:
 
 
 def entero_a_binario(numero:int)->str:
+    """
+    Requiere: Un int mayor o igual a cero
+    Devuelve: un string con el numero ingresado transformado a binario
+    """
     resultado:str = ""
+    if(numero==0):
+        resultado="0"
     while(numero > 0):
-        resto = numero % 2
-        numero = numero // 2
+        resto:int = numero % 2
+        numero: int = numero // 2
         resultado = str(resto) + resultado
     return resultado
    
 def es_pesado(n: int) -> bool:
-    binario = entero_a_binario(n)
+    """
+    Requiere: Un int mayor o igual a cero
+    Devuelve: True si cada prefijo del numero int ingresado (expresado en binario) tiene mas unos que ceros. False en caso contrario.
+    """
+    binario: str = entero_a_binario(n)
     posicion: int = 0
-    resultado: bool
+    resultado: bool = True
     
     while(posicion < len(binario)):
-        analizar: str = prefijo(binario, posicion)
-        if(mas_unos_que_ceros(analizar) == True):
-            resultado = True
-            posicion += 1
-        else:
-            resultado = False
-            posicion += 1
+        analizar: str = prefijo(binario, posicion+1)
+        print(analizar)
+        if(not mas_unos_que_ceros(analizar)):
+            return False
+        posicion += 1
     return resultado
         
    
     
 def densidad(n:int, m: int) -> float:   
+    """
+    Requiere: 2 int donde el segundo debe ser mayor al primer numero ingresado.
+    Devuelve: El resultado de la division entre la cantidad de numeros en el intervalo y la cantidad de numeros pesados en este
+    """
     posicion: int = n
     cantidadDePesados : int = 0
     while (posicion < m):
@@ -80,23 +99,3 @@ def densidad(n:int, m: int) -> float:
         posicion += 1
     densidad:float = cantidadDePesados / (m-n)
     return densidad
-
-"""    
-print("")
-print(cant_ceros("10010"))
-print("")
-print(cant_unos("10010"))
-print("")
-print(mas_unos_que_ceros("11001"))
-print("")
-print(mas_unos_que_ceros("10001"))
-print("")
-print(prefijo("DiTella",4))
-print("")
-print(es_pesado(57))
-print("")
-print(es_pesado(51))
-print("")
-print(densidad(29,33))
-
-"""
